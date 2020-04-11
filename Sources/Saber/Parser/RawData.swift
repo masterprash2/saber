@@ -33,7 +33,7 @@ class RawData {
 
     func annotations(for structure: [String : SourceKitRepresentable]) -> [String] {
         guard let offset = structure[SwiftDocKey.offset] as? Int64,
-            let cursor = contents.bridge().lineAndCharacter(forByteOffset: Int(offset)),
+            let cursor = StringView.init(contents.bridge()).lineAndCharacter(forByteOffset:ByteCount.init(Int(offset))),
             cursor.line > 0 else {
             return []
         }
@@ -55,7 +55,7 @@ class RawData {
 }
 
 private func parse(contents: String, prefix: String) -> [ParsedLine] {
-    return contents.bridge().lines().map {
+    return StringView(contents.bridge()).lines.map {
         let rawText = $0.content.trimmingCharacters(in: .whitespaces)
         let kind: ParsedLine.Kind
         let isComment = rawText.hasPrefix("//")

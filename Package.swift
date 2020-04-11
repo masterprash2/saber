@@ -1,4 +1,4 @@
-// swift-tools-version:4.2
+// swift-tools-version:5.1
 
 import PackageDescription
 
@@ -11,8 +11,8 @@ var package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/jpsim/SourceKitten.git", from: "0.22.0"),
-        .package(url: "https://github.com/Carthage/Commandant.git", from: "0.15.0"),
+        .package(url: "https://github.com/jpsim/SourceKitten.git", from: "0.29.0"),
+        .package(url: "https://github.com/Carthage/Commandant.git", from: "0.17.0"),
     ],
     targets: [
         .target(
@@ -33,15 +33,15 @@ var package = Package(
         ),
         .testTarget(
             name: "SaberCLITests",
-            dependencies: ["SaberCLI"]
+            dependencies: ["Saber", "SaberCLI"]
         )
     ],
-    swiftLanguageVersions: [.v4, .v4_2]
+    swiftLanguageVersions: [.v5]
 )
 
 #if os(OSX)
 package.dependencies.append(
-    .package(url: "https://github.com/xcode-project-manager/xcodeproj.git", from: "6.4.0")
+    .package(url: "https://github.com/xcode-project-manager/xcodeproj.git", from: "7.10.0")
 )
-package.targets[1].dependencies.append("xcodeproj")
+package.targets[1].dependencies.append("XcodeProj")
 #endif

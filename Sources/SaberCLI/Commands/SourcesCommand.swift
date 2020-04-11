@@ -8,7 +8,6 @@
 import Foundation
 import Saber
 import Commandant
-import Result
 
 public struct SourcesCommand: CommandProtocol {
 

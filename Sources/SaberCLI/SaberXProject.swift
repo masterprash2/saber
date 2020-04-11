@@ -9,7 +9,7 @@
 
 import Foundation
 import PathKit
-import xcodeproj
+import XcodeProj
 
 class SaberXProject {
     
@@ -26,7 +26,7 @@ class SaberXProject {
                 let sourcePhases = nativeTarget.buildPhases
                     .compactMap { $0 as? PBXSourcesBuildPhase }
                 sourcePhases.forEach {
-                    let elems = $0.files.compactMap { $0.file }
+                    let elems = $0.files!.compactMap { $0.file }
                     elements.append(contentsOf: elems)
                 }
                 let paths: [String] = elements

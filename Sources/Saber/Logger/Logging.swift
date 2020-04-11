@@ -27,10 +27,10 @@ extension Logging {
     }
     
     public func info(_ message: @autoclosure () -> String) {
-        log(.info, message: message)
+        log(.info, message: message())
     }
 
     public func debug(_ message: @autoclosure () -> String) {
-        log(.debug, message: message)
+        log(.debug, message: message())
     }
 }
