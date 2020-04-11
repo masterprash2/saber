@@ -112,7 +112,7 @@ class RendererModuleTests: XCTestCase {
                     return provider.provide()
                 }
 
-                private func injectTo(networkManager: Module.NetworkManager) {
+                @objc private func injectTo(networkManager: Module.NetworkManager) {
                     networkManager.user = self.user
                 }
 

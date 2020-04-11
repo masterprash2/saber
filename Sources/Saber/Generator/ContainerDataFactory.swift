@@ -235,7 +235,17 @@ public class ContainerDataFactory {
         } else {
             typeString = "inout " + decl.set(isOptional: false).fullName(modular: true)
         }
-        var lines = ["\(accessLevel) func injectTo(\(varName): \(typeString)) {"]
+        let objcPrepend : String
+        let newAccessLevel : String
+        if(accessLevel != "private") {
+            objcPrepend = "@objc "
+            newAccessLevel = "public"
+        }
+        else {
+            objcPrepend = ""
+            newAccessLevel = accessLevel
+        }
+        var lines = ["\(objcPrepend)\(newAccessLevel) func injectTo(\(varName): \(typeString)) {"]
         memberInjections.forEach {
             let lvalue = "\(varName).\($0.name)"
             let rvalue = self.accessor(of: $0.typeResolver, owner: "self", isLazy: $0.isLazy)
